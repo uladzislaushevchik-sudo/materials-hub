@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0f172a">
+<meta name="description" content="Каталог учебных материалов — интерактивы, карточки учеников, грамматика, предлоги">
+<title>Materials Hub · English Tutor</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0b1220;
+  --bg2: #111a2e;
+  --card: #151f33;
+  --card2: #1a2540;
+  --line: rgba(148,163,184,.14);
+  --text: #e8eef8;
+  --muted: #8b9bb8;
+  --accent: #38bdf8;
+  --accent2: #818cf8;
+  --green: #34d399;
+  --amber: #fbbf24;
+  --rose: #fb7185;
+  --violet: #a78bfa;
+  --radius: 16px;
+  --shadow: 0 8px 30px rgba(0,0,0,.35);
+}
+[data-theme="light"] {
+  --bg: #f4f7fb;
+  --bg2: #ffffff;
+  --card: #ffffff;
+  --card2: #f8fafc;
+  --line: rgba(15,23,42,.08);
+  --text: #0f172a;
+  --muted: #64748b;
+  --accent: #0284c7;
+  --accent2: #4f46e5;
+  --shadow: 0 8px 24px rgba(15,23,42,.08);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: "DM Sans", system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  line-height: 1.5;
+}
+a { color: inherit; text-decoration: none; }
+button { font-family: inherit; cursor: pointer; border: none; background: none; color: inherit; }
+.wrap { max-width: 1120px; margin: 0 auto; padding: 0 18px 80px; }
+.hero {
+  position: relative;
+  padding: 36px 0 28px;
+  overflow: hidden;
+}
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: -40% -20% auto;
+  height: 420px;
+  background:
+    radial-gradient(ellipse 50% 60% at 20% 40%, rgba(56,189,248,.18), transparent 60%),
+    radial-gradient(ellipse 40% 50% at 80% 20%, rgba(129,140,248,.16), transparent 55%),
+    radial-gradient(ellipse 30% 40% at 60% 80%, rgba(167,139,250,.1), transparent 50%);
+  pointer-events: none;
+}
+.hero-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  position: relative;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.logo {
+  width: 48px; height: 48px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  display: grid; place-items: center;
+  font-weight: 700; font-size: 1.15rem; color: #fff;
+  box-shadow: 0 8px 24px rgba(56,189,248,.25);
+}
+.brand h1 {
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: -.02em;
+}
+.brand p { color: var(--muted); font-size: .85rem; margin-top: 2px; }
+.hero-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.icon-btn {
+  width: 40px; height: 40px;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  background: var(--card);
+  display: grid; place-items: center;
+  font-size: 1.05rem;
+  transition: .15s;
+}
+.icon-btn:hover { border-color: var(--accent); color: var(--accent); }
+.search-wrap {
+  margin-top: 22px;
+  position: relative;
+  z-index: 2;
+}
+.search-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 12px 16px;
+  box-shadow: var(--shadow);
+}
+.search-box:focus-within { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(56,189,248,.15); }
+.search-box svg { opacity: .55; flex-shrink: 0; }
+.search-box input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  color: var(--text);
+  font-size: 1rem;
+  outline: none;
+  font-family: inherit;
+}
+.search-box input::placeholder { color: var(--muted); }
+.kbd {
+  font-family: "JetBrains Mono", monospace;
+  font-size: .68rem;
+  color: var(--muted);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 2px 6px;
+}
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 16px;
+  position: relative;
+  z-index: 2;
+}
+.chip {
+  padding: 7px 14px;
+  border-radius: 999px;
+  font-size: .78rem;
+  font-weight: 600;
+  border: 1px solid var(--line);
+  background: var(--card);
+  color: var(--muted);
+  transition: .15s;
+}
+.chip:hover { color: var(--text); border-color: var(--accent); }
+.chip.active {
+  background: linear-gradient(135deg, rgba(56,189,248,.18), rgba(129,140,248,.18));
+  border-color: rgba(56,189,248,.4);
+  color: var(--accent);
+}
+.stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin: 22px 0 8px;
+}
+@media (max-width: 640px) { .stats { grid-template-columns: repeat(2, 1fr); } }
+.stat {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 14px 16px;
+}
+.stat b { display: block; font-size: 1.35rem; font-weight: 700; letter-spacing: -.02em; }
+.stat span { font-size: .75rem; color: var(--muted); }
+.section { margin-top: 32px; }
+.section-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+.section-head h2 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.section-head h2 .dot {
+  width: 10px; height: 10px; border-radius: 50%;
+}
+.section-head .count {
+  font-size: .75rem;
+  color: var(--muted);
+  font-weight: 500;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 12px;
+}
+.card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 16px 16px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition: .18s transform, .18s border-color, .18s box-shadow;
+  position: relative;
+  overflow: hidden;
+}
+.card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(56,189,248,.35);
+  box-shadow: var(--shadow);
+}
+.card-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+}
+.badge {
+  font-size: .65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  padding: 3px 8px;
+  border-radius: 6px;
+  background: rgba(56,189,248,.12);
+  color: var(--accent);
+}
+.badge.green { background: rgba(52,211,153,.12); color: var(--green); }
+.badge.amber { background: rgba(251,191,36,.12); color: var(--amber); }
+.badge.rose { background: rgba(251,113,133,.12); color: var(--rose); }
+.badge.violet { background: rgba(167,139,250,.12); color: var(--violet); }
+.badge.muted { background: rgba(148,163,184,.12); color: var(--muted); }
+.card h3 {
+  font-size: .95rem;
+  font-weight: 650;
+  letter-spacing: -.01em;
+  line-height: 1.3;
+}
+.card p {
+  font-size: .8rem;
+  color: var(--muted);
+  flex: 1;
+}
+.tags { display: flex; flex-wrap: wrap; gap: 5px; }
+.tag {
+  font-size: .68rem;
+  color: var(--muted);
+  background: var(--card2);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 2px 7px;
+}
+.card-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 4px;
+}
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  border-radius: 10px;
+  font-size: .78rem;
+  font-weight: 600;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  color: #fff;
+  transition: .15s opacity;
+}
+.btn:hover { opacity: .9; }
+.btn.ghost {
+  background: transparent;
+  border: 1px solid var(--line);
+  color: var(--text);
+}
+.btn.ghost:hover { border-color: var(--accent); color: var(--accent); }
+.path {
+  font-family: "JetBrains Mono", monospace;
+  font-size: .65rem;
+  color: var(--muted);
+  opacity: .8;
+  word-break: break-all;
+}
+.empty {
+  text-align: center;
+  padding: 48px 16px;
+  color: var(--muted);
+  display: none;
+}
+.empty.show { display: block; }
+footer {
+  margin-top: 48px;
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: .78rem;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="hero">
+    <div class="hero-top">
+      <div class="brand">
+        <div class="logo">EH</div>
+        <div>
+          <h1>Materials Hub</h1>
+          <p>Все материалы для уроков английского — в одном месте</p>
+        </div>
+      </div>
+      <div class="hero-actions">
+        <button class="icon-btn" type="button" onclick="toggleTheme()" title="Тема">🌓</button>
+      </div>
+    </div>
+    <div class="search-wrap">
+      <div class="search-box">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3-3"/></svg>
+        <input id="q" type="search" placeholder="Поиск: артикли, предлоги, Егор, Simple Tenses…" autocomplete="off">
+        <span class="kbd">/</span>
+      </div>
+    </div>
+    <div class="filters" id="filters"></div>
+    <div class="stats">
+      <div class="stat"><b id="statAll">0</b><span>Всего материалов</span></div>
+      <div class="stat"><b id="statOnline">0</b><span>Онлайн-ссылки</span></div>
+      <div class="stat"><b id="statCards">0</b><span>Карточки учеников</span></div>
+      <div class="stat"><b id="statTopics">0</b><span>Темы</span></div>
+    </div>
+  </header>
+  <div id="content"></div>
+  <div class="empty" id="empty">Ничего не найдено. Попробуйте другой запрос.</div>
+  <footer>
+    <span>English Tutor · Materials Hub</span>
+    <span>Обновлено: ноябрь 2026</span>
+  </footer>
+</div>
+<script>
+const FILTERS = [
+  { id: 'all', label: 'Все' },
+  { id: 'grammar', label: 'Грамматика' },
+  { id: 'prepositions', label: 'Предлоги' },
+  { id: 'vocabulary', label: 'Словарь' },
+  { id: 'students', label: 'Карточки' },
+  { id: 'egor', label: 'Егор' },
+  { id: 'victoria', label: 'Виктория' },
+  { id: 'veronika', label: 'Вероника' },
+  { id: 'sergey', label: 'Сергей Д.' },
+  { id: 'exams', label: 'Экзамены' },
+];
+const SECTIONS = [
+  {
+    id: 'students',
+    title: 'Карточки учеников',
+    color: '#38bdf8',
+    items: [
+      { title: 'Егор Соколовский', desc: 'Студенческая карточка · B1− → B2 · FCE path', tags: ['карточка', 'Егор', 'Netlify'], cat: ['students', 'egor'], badge: { t: 'Online', c: 'green' }, url: 'https://egor-sokolovsky-card.netlify.app/', path: 'student-cards/Egor_Sokolovsky_Student_Card.html' },
+      { title: 'Сергей Давидовский', desc: 'Карточка · словарь · расписание · упражнения', tags: ['карточка', 'Сергей', 'jsDelivr'], cat: ['students', 'sergey'], badge: { t: 'Online', c: 'green' }, url: 'https://cdn.jsdelivr.net/gh/uladzislaushevchik-sudo/sergey-student-card@main/index.html', path: 'student-cards/Sergey_Davidovsky_Student_Card.html' },
+      { title: 'Сергей Авчинник', desc: 'IT / programming English · A2+ → B2', tags: ['карточка', 'Авчинник'], cat: ['students'], badge: { t: 'Локально', c: 'muted' }, path: 'student-cards/Sergey_Avchinnik_Student_Card.html' },
+      { title: 'Виктория Бузук', desc: 'Бизнес / логистика · B1 · Google Sheet linked', tags: ['карточка', 'Виктория'], cat: ['students', 'victoria'], badge: { t: 'Локально', c: 'muted' }, path: 'student-cards/Victoria_Buzuk_Student_Card.html' },
+    ]
+  },
+  {
+    id: 'grammar',
+    title: 'Грамматика',
+    color: '#818cf8',
+    items: [
+      { title: 'Simple Tenses', desc: 'Present · Past · Future Simple — теория и упражнения отдельно', tags: ['времена', 'Present', 'Past', 'Future'], cat: ['grammar'], badge: { t: 'Online', c: 'green' }, url: 'https://uladzislaushevchik-sudo.github.io/present-simple/Simple_Tenses_Interactive.html', path: 'materials/grammar/Simple_Tenses_Interactive.html' },
+      { title: 'Present Simple', desc: 'Утверждения, вопросы, отрицания, to be', tags: ['времена', 'Present Simple'], cat: ['grammar'], badge: { t: 'Online', c: 'green' }, url: 'https://uladzislaushevchik-sudo.github.io/present-simple/', path: 'materials/grammar/Present_Simple_Interactive.html' },
+      { title: 'Articles (a / an / the / zero)', desc: 'Практика артиклей · сохранение результатов', tags: ['артикли', 'grammar'], cat: ['grammar'], badge: { t: 'Online', c: 'green' }, url: 'https://uladzislaushevchik-sudo.github.io/articles-practice/Articles.html', path: 'materials/grammar/Articles_Interactive.html' },
+      { title: 'Quantifiers', desc: 'much, many, a lot of, some, any, few, little…', tags: ['quantifiers', 'some/any'], cat: ['grammar'], badge: { t: 'Локально', c: 'muted' }, path: 'materials/grammar/Quantifiers_Interactive.html' },
+      { title: 'English Level Test', desc: 'Большой тест на определение уровня', tags: ['уровень', 'CEFR', 'тест'], cat: ['grammar', 'exams'], badge: { t: 'Локально', c: 'muted' }, path: 'materials/grammar/English_Level_Test_Interactive.html' },
+      { title: 'Gerund & Infinitive', desc: 'Михаил Погосян · stop/remember/try/regret…', tags: ['герундий', 'инфинитив'], cat: ['grammar'], badge: { t: 'Локально', c: 'muted' }, path: 'materials/grammar/Mikhail_Pogosyan_Gerund_Infinitive_Interactive.html' },
+    ]
+  },
+  {
+    id: 'prepositions',
+    title: 'Предлоги',
+    color: '#a78bfa',
+    items: [
+      { title: 'Prepositions of Time', desc: 'in / on / at · периоды, даты, части дня', tags: ['время', 'in/on/at'], cat: ['prepositions'], badge: { t: 'Online', c: 'green' }, url: 'https://htmlpreview.github.io/?https://raw.githubusercontent.com/uladzislaushevchik-sudo/prepositions-of-time/main/index.html', path: 'materials/prepositions/Prepositions_of_Time_Interactive.html' },
+      { title: 'Prepositions of Place', desc: 'in / on / at / under / between…', tags: ['место'], cat: ['prepositions'], badge: { t: 'Online', c: 'green' }, url: 'https://htmlpreview.github.io/?https://raw.githubusercontent.com/uladzislaushevchik-sudo/prepositions-of-place/main/index.html', path: 'materials/prepositions/Prepositions_of_Place_Interactive.html' },
+      { title: 'Prepositions + Transport', desc: 'by bus, on the train, in a taxi…', tags: ['транспорт'], cat: ['prepositions'], badge: { t: 'Локально', c: 'muted' }, path: 'materials/prepositions/Prepositions_Transport_Interactive.html' },
+      { title: 'Reason & Purpose', desc: 'because of, due to, for, to, in order to, thanks to', tags: ['причина', 'цель'], cat: ['prepositions'], badge: { t: 'Локально', c: 'muted' }, path: 'materials/prepositions/Prepositions_Reason_Purpose_Interactive.html' },
+      { title: 'Prepositions Exam', desc: 'Экзамен по всем предлогам (кроме причины/цели) · webhook', tags: ['экзамен', 'предлоги'], cat: ['prepositions', 'exams'], badge: { t: 'Online', c: 'green' }, url: 'https://cdn.jsdelivr.net/gh/uladzislaushevchik-sudo/prepositions-exam@main/index.html', path: 'materials/prepositions/Prepositions_Exam_Interactive.html' },
+      { title: 'Презентация: причина и цель', desc: 'Google Slides · because of, due to, in order to…', tags: ['презентация', 'причина', 'цель'], cat: ['prepositions'], badge: { t: 'Slides', c: 'amber' }, url: 'https://docs.google.com/presentation/d/1isZ4eMViWA3JfG_bmXVaZ3EfCCRIC33bAhM2R6WcypM/edit' },
+    ]
+  },
+  {
+    id: 'vocabulary',
+    title: 'Словарь и collocations',
+    color: '#34d399',
+    items: [
+      { title: 'Collocations Practice', desc: 'Устойчивые сочетания · интерактив', tags: ['collocations'], cat: ['vocabulary'], badge: { t: 'Локально', c: 'muted' }, path: 'materials/vocabulary/Collocations_Interactive.html' },
+      { title: 'Сергей Д. — Vocabulary Interactive', desc: 'Словарь по темам с упражнениями', tags: ['Сергей', 'словарь'], cat: ['vocabulary', 'sergey'], badge: { t: 'Локально', c: 'muted' }, path: 'materials/vocabulary/Sergey_Davidovsky_Vocabulary_Interactive.html' },
+      { title: 'Виктория — Vocabulary Interactive', desc: 'Тематический словарь', tags: ['Виктория', 'словарь'], cat: ['vocabulary', 'victoria'], badge: { t: 'Локально', c: 'muted' }, path: 'materials/vocabulary/Victoria_Buzuk_Vocabulary_Interactive.html' },
+      { title: 'Виктория — Vocabulary Speaking', desc: 'Говорение по словарю', tags: ['Виктория', 'speaking'], cat: ['vocabulary', 'victoria'], badge: { t: 'Локально', c: 'muted' }, path: 'materials/vocabulary/Victoria_Buzuk_Vocabulary_Speaking_Interactive.html' },
+    ]
+  },
+  {
+    id: 'egor',
+    title: 'Егор · Cambridge B2 First',
+    color: '#fbbf24',
+    items: [
+      { title: 'FCE Foundation', desc: 'articles · there is · linkers · email rewrite', tags: ['FCE', 'Егор'], cat: ['egor', 'grammar'], badge: { t: 'Локально', c: 'muted' }, path: 'materials/egor/Egor_FCE_Foundation_Interactive.html' },
+      { title: 'FCE Articles', desc: 'Практика артиклей под FCE', tags: ['FCE', 'артикли'], cat: ['egor', 'grammar'], badge: { t: 'Локально', c: 'muted' }, path: 'materials/egor/Egor_FCE_Articles.html' },
+      { title: 'FCE There is / are', desc: 'Конструкции there is/are', tags: ['FCE'], cat: ['egor', 'grammar'], badge: { t: 'Локально', c: 'muted' }, path: 'materials/egor/Egor_FCE_There_Is_Are.html' },
+      { title: 'FCE Linking Words', desc: 'Союзы и связки', tags: ['FCE', 'linkers'], cat: ['egor', 'grammar'], badge: { t: 'Локально', c: 'muted' }, path: 'materials/egor/Egor_FCE_Linking_Words.html' },
+      { title: 'FCE Relative Clauses', desc: 'Относительные придаточные', tags: ['FCE', 'relative'], cat: ['egor', 'grammar'], badge: { t: 'Локально', c: 'muted' }, path: 'materials/egor/Egor_FCE_Relative_Clauses.html' },
+      { title: 'FCE Quantifiers', desc: 'Quantifiers для FCE', tags: ['FCE', 'quantifiers'], cat: ['egor', 'grammar'], badge: { t: 'Локально', c: 'muted' }, path: 'materials/egor/Egor_FCE_Quantifiers.html' },
+      { title: 'FCE Conjunctions', desc: 'Союзы', tags: ['FCE'], cat: ['egor', 'grammar'], badge: { t: 'Локально', c: 'muted' }, path: 'materials/egor/Egor_FCE_Conjunctions.html' },
+      { title: 'FCE Writing Rewrite', desc: 'Переписывание писем (Alex / email)', tags: ['FCE', 'writing'], cat: ['egor'], badge: { t: 'Локально', c: 'muted' }, path: 'materials/egor/Egor_FCE_Writing_Rewrite.html' },
+    ]
+  },
+  {
+    id: 'students-extra',
+    title: 'Виктория · Вероника · прочее',
+    color: '#fb7185',
+    items: [
+      { title: 'Victoria · Cambridge B1 Practice Exam', desc: 'Практический экзамен B1', tags: ['Виктория', 'B1', 'экзамен'], cat: ['victoria', 'exams'], badge: { t: 'Локально', c: 'muted' }, path: 'materials/victoria/Victoria_Buzuk_Cambridge_B1_Practice_Exam.html' },
+      { title: 'Вероника · Spain Survival', desc: 'Разговорные ситуации · Испания', tags: ['Вероника'], cat: ['veronika'], badge: { t: 'Локально', c: 'muted' }, path: 'materials/veronika/Veronika_Spain_Survival_Interactive.html' },
+      { title: 'Вероника · Shopping & Spa', desc: 'Шоппинг и spa-лексика', tags: ['Вероника'], cat: ['veronika'], badge: { t: 'Локально', c: 'muted' }, path: 'materials/veronika/Veronika_Shopping_Spa_Interactive.html' },
+      { title: 'Результаты экзаменов (Google Sheet)', desc: 'Prepositions Exam + Articles results', tags: ['результаты', 'Sheet'], cat: ['exams'], badge: { t: 'Sheet', c: 'amber' }, url: 'https://docs.google.com/spreadsheets/d/1bzhTL58e2V5Cjaz-F5lH_5IPkXpFXLZsqTnAEqCiPvM' },
+    ]
+  },
+];
+let activeFilter = 'all';
+let query = '';
+function toggleTheme() {
+  const d = document.documentElement;
+  d.setAttribute('data-theme', d.getAttribute('data-theme') === 'light' ? '' : 'light');
+  try { localStorage.setItem('hub_theme', d.getAttribute('data-theme') || 'dark'); } catch(e) {}
+}
+(function(){
+  try {
+    const t = localStorage.getItem('hub_theme');
+    if (t === 'light') document.documentElement.setAttribute('data-theme', 'light');
+  } catch(e) {}
+})();
+function matchItem(item) {
+  if (activeFilter !== 'all' && !(item.cat || []).includes(activeFilter)) return false;
+  if (!query) return true;
+  const hay = [item.title, item.desc, ...(item.tags||[]), item.path||''].join(' ').toLowerCase();
+  return query.split(/\s+/).every(w => hay.includes(w));
+}
+function renderFilters() {
+  document.getElementById('filters').innerHTML = FILTERS.map(f =>
+    `<button type="button" class="chip ${activeFilter===f.id?'active':''}" data-f="${f.id}">${f.label}</button>`
+  ).join('');
+  document.querySelectorAll('.chip').forEach(btn => {
+    btn.onclick = () => { activeFilter = btn.dataset.f; render(); };
+  });
+}
+function cardHTML(item) {
+  const badge = item.badge || { t: 'Материал', c: '' };
+  const actions = [];
+  if (item.url) actions.push(`<a class="btn" href="${item.url}" target="_blank" rel="noopener">Открыть ↗</a>`);
+  if (item.path && !item.url) actions.push(`<span class="btn ghost" title="Откройте файл из artifacts">Локальный файл</span>`);
+  if (item.path && item.url) actions.push(`<span class="btn ghost" title="${item.path}">путь</span>`);
+  return `<article class="card">
+    <div class="card-top"><span class="badge ${badge.c||''}">${badge.t}</span></div>
+    <h3>${item.title}</h3>
+    <p>${item.desc||''}</p>
+    <div class="tags">${(item.tags||[]).map(t=>`<span class="tag">${t}</span>`).join('')}</div>
+    ${item.path ? `<div class="path">${item.path}</div>` : ''}
+    <div class="card-actions">${actions.join('')}</div>
+  </article>`;
+}
+function render() {
+  renderFilters();
+  let total = 0, online = 0, cards = 0, shown = 0;
+  const topics = new Set();
+  const html = SECTIONS.map(sec => {
+    const items = sec.items.filter(matchItem);
+    sec.items.forEach(it => {
+      total++;
+      if (it.url) online++;
+      if ((it.cat||[]).includes('students')) cards++;
+      (it.cat||[]).forEach(c => topics.add(c));
+    });
+    if (!items.length) return '';
+    shown += items.length;
+    return `<section class="section" data-sec="${sec.id}">
+      <div class="section-head">
+        <h2><span class="dot" style="background:${sec.color}"></span>${sec.title}</h2>
+        <span class="count">${items.length}</span>
+      </div>
+      <div class="grid">${items.map(cardHTML).join('')}</div>
+    </section>`;
+  }).join('');
+  document.getElementById('content').innerHTML = html;
+  document.getElementById('empty').classList.toggle('show', shown === 0);
+  document.getElementById('statAll').textContent = total;
+  document.getElementById('statOnline').textContent = online;
+  document.getElementById('statCards').textContent = cards;
+  document.getElementById('statTopics').textContent = topics.size;
+}
+const q = document.getElementById('q');
+q.addEventListener('input', () => { query = q.value.trim().toLowerCase(); render(); });
+document.addEventListener('keydown', e => {
+  if (e.key === '/' && document.activeElement !== q) { e.preventDefault(); q.focus(); }
+});
+render();
+</script>
+</body>
+</html>
