@@ -7,31 +7,19 @@
 <title>Materials Hub · English Tutor</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#0b1220;--card:#151f33;--card2:#1a2540;--line:rgba(148,163,184,.14);--text:#e8eef8;--muted:#8b9bb8;--accent:#38bdf8;--accent2:#818cf8;--green:#34d399;--amber:#fbbf24;--violet:#a78bfa;--radius:16px;--shadow:0 8px 30px rgba(0,0,0,.35)}
+:root{--bg:#0b1220;--card:#151f33;--card2:#1a2540;--line:rgba(148,163,184,.14);--text:#e8eef8;--muted:#8b9bb8;--accent:#38bdf8;--accent2:#818cf8;--green:#34d399;--amber:#fbbf24;--radius:16px;--shadow:0 8px 30px rgba(0,0,0,.35)}
 [data-theme=light]{--bg:#f4f7fb;--card:#fff;--card2:#f8fafc;--line:rgba(15,23,42,.08);--text:#0f172a;--muted:#64748b;--accent:#0284c7;--accent2:#4f46e5;--shadow:0 8px 24px rgba(15,23,42,.08)}
 *{box-sizing:border-box;margin:0;padding:0}body{font-family:DM Sans,system-ui,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;line-height:1.5}a{color:inherit;text-decoration:none}button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
-.wrap{max-width:1120px;margin:0 auto;padding:0 18px 80px}.hero{position:relative;padding:36px 0 28px;overflow:hidden}
-.hero-top{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;position:relative}
+.wrap{max-width:1120px;margin:0 auto;padding:0 18px 80px}.hero{padding:36px 0 28px;position:relative}
+.hero-top{display:flex;align-items:flex-start;justify-content:space-between;gap:16px}
 .brand{display:flex;align-items:center;gap:14px}.logo{width:48px;height:48px;border-radius:14px;background:linear-gradient(135deg,var(--accent),var(--accent2));display:grid;place-items:center;font-weight:700;font-size:1.15rem;color:#fff}
 .brand h1{font-size:1.35rem;font-weight:700}.brand p{color:var(--muted);font-size:.85rem;margin-top:2px}
 .icon-btn{width:40px;height:40px;border-radius:12px;border:1px solid var(--line);background:var(--card);display:grid;place-items:center}
-.search-box{display:flex;align-items:center;gap:10px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 16px;margin-top:22px;position:relative;z-index:2;box-shadow:var(--shadow)}
+.search-box{display:flex;align-items:center;gap:10px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 16px;margin-top:22px;box-shadow:var(--shadow)}
 .search-box input{flex:1;border:none;background:transparent;color:var(--text);font-size:1rem;outline:none;font-family:inherit}
-.filters-bar{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin-top:16px;position:relative;z-index:5}
-.filters{display:flex;flex-wrap:wrap;gap:8px;flex:1;min-width:0}
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
 .chip{padding:7px 14px;border-radius:999px;font-size:.78rem;font-weight:600;border:1px solid var(--line);background:var(--card);color:var(--muted)}
 .chip.active{background:linear-gradient(135deg,rgba(56,189,248,.18),rgba(129,140,248,.18));border-color:rgba(56,189,248,.4);color:var(--accent)}
-.student-filter{position:relative;flex-shrink:0}
-.student-btn{display:inline-flex;align-items:center;gap:8px;padding:7px 14px;border-radius:999px;font-size:.78rem;font-weight:600;border:1px solid var(--line);background:var(--card);color:var(--muted);white-space:nowrap}
-.student-btn.has-value{background:linear-gradient(135deg,rgba(167,139,250,.15),rgba(129,140,248,.12));border-color:rgba(167,139,250,.4);color:var(--violet)}
-.student-btn .chev{font-size:.65rem;opacity:.7}.student-btn.open .chev{transform:rotate(180deg)}
-.student-menu{position:absolute;top:calc(100% + 6px);right:0;min-width:180px;background:var(--card);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);padding:6px;display:none;z-index:20}
-.student-menu.open{display:block}
-.student-option{display:flex;align-items:center;gap:8px;width:100%;padding:9px 12px;border-radius:10px;font-size:.82rem;font-weight:500;color:var(--muted);text-align:left}
-.student-option:hover{background:var(--card2);color:var(--text)}.student-option.active{background:rgba(167,139,250,.12);color:var(--violet);font-weight:600}
-.student-option .dot{width:8px;height:8px;border-radius:50%;background:currentColor;opacity:.5}
-.filters-divider{width:1px;height:22px;background:var(--line)}
-@media(max-width:640px){.filters-bar{flex-direction:column;align-items:stretch}.filters-divider{display:none}}
 .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:22px 0 8px}
 @media(max-width:640px){.stats{grid-template-columns:repeat(2,1fr)}}
 .stat{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
@@ -40,7 +28,7 @@
 .section-head h2{font-size:1.05rem;font-weight:700;display:flex;align-items:center;gap:10px}
 .section-head h2 .dot{width:10px;height:10px;border-radius:50%}.section-head .count{font-size:.75rem;color:var(--muted)}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:16px;display:flex;flex-direction:column;gap:10px;transition:.18s}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:16px;display:flex;flex-direction:column;gap:10px}
 .badge{font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;padding:3px 8px;border-radius:6px;background:rgba(56,189,248,.12);color:var(--accent)}
 .badge.green{background:rgba(52,211,153,.12);color:var(--green)}.badge.amber{background:rgba(251,191,36,.12);color:var(--amber)}.badge.muted{background:rgba(148,163,184,.12);color:var(--muted)}
 .card h3{font-size:.95rem;font-weight:650}.card p{font-size:.8rem;color:var(--muted);flex:1}
@@ -48,6 +36,7 @@
 .card-actions{display:flex;gap:8px;margin-top:4px}
 .btn{display:inline-flex;align-items:center;gap:6px;padding:8px 12px;border-radius:10px;font-size:.78rem;font-weight:600;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff}
 .btn.ghost{background:transparent;border:1px solid var(--line);color:var(--text)}
+.path{font-family:JetBrains Mono,monospace;font-size:.65rem;color:var(--muted);opacity:.8;word-break:break-all}
 .empty{text-align:center;padding:48px 16px;color:var(--muted);display:none}.empty.show{display:block}
 footer{margin-top:48px;padding-top:20px;border-top:1px solid var(--line);color:var(--muted);font-size:.78rem;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
 </style>
@@ -60,18 +49,11 @@ footer{margin-top:48px;padding-top:20px;border-top:1px solid var(--line);color:v
 <button class="icon-btn" type="button" onclick="toggleTheme()" title="Тема">🌓</button>
 </div>
 <div class="search-box"><input id="q" type="search" placeholder="Поиск: артикли, предлоги, времена, Егор…" autocomplete="off"></div>
-<div class="filters-bar">
 <div class="filters" id="filters"></div>
-<div class="filters-divider" aria-hidden="true"></div>
-<div class="student-filter" id="studentFilter">
-<button type="button" class="student-btn" id="studentBtn"><span id="studentLabel">Все ученики</span><span class="chev">▾</span></button>
-<div class="student-menu" id="studentMenu"></div>
-</div>
-</div>
 <div class="stats">
 <div class="stat"><b id="statAll">0</b><span>Всего материалов</span></div>
 <div class="stat"><b id="statOnline">0</b><span>Онлайн-ссылки</span></div>
-<div class="stat"><b id="statCards">0</b><span>Карточки учеников</span></div>
+<div class="stat"><b id="statCards">0</b><span>Карточки</span></div>
 <div class="stat"><b id="statTopics">0</b><span>Темы</span></div>
 </div>
 </header>
@@ -81,17 +63,12 @@ footer{margin-top:48px;padding-top:20px;border-top:1px solid var(--line);color:v
 </div>
 <script src="data.js"></script>
 <script>
-const FILTERS=[{id:'all',label:'Все'},{id:'grammar',label:'Грамматика'},{id:'prepositions',label:'Предлоги'},{id:'vocabulary',label:'Словарь'},{id:'students',label:'Карточки'},{id:'exams',label:'Экзамены'}];
-const STUDENTS=[{id:'all',label:'Все ученики'},{id:'egor',label:'Егор'},{id:'victoria',label:'Виктория'},{id:'veronika',label:'Вероника'},{id:'sergey',label:'Сергей Д.'}];
-let activeFilter='all',activeStudent='all',query='';
+const FILTERS=[{id:'all',label:'Все'},{id:'exercises',label:'Упражнения'},{id:'students',label:'Карточки'},{id:'exams',label:'Экзамены'}];
+let activeFilter='all',query='';
 function toggleTheme(){const d=document.documentElement;d.setAttribute('data-theme',d.getAttribute('data-theme')==='light'?'':'light');try{localStorage.setItem('hub_theme',d.getAttribute('data-theme')||'dark')}catch(e){}}
 (function(){try{if(localStorage.getItem('hub_theme')==='light')document.documentElement.setAttribute('data-theme','light')}catch(e){}})();
-function matchItem(item){const cats=item.cat||[];if(activeFilter!=='all'&&!cats.includes(activeFilter))return false;if(activeStudent!=='all'&&!cats.includes(activeStudent))return false;if(!query)return true;const hay=[item.title,item.desc,...(item.tags||[]),item.path||''].join(' ').toLowerCase();return query.split(/\s+/).every(w=>hay.includes(w))}
-function renderFilters(){document.getElementById('filters').innerHTML=FILTERS.map(f=>`<button type="button" class="chip ${activeFilter===f.id?'active':''}" data-f="${f.id}">${f.label}</button>`).join('');document.querySelectorAll('.chip').forEach(btn=>{btn.onclick=()=>{activeFilter=btn.dataset.f;render()}});const student=STUDENTS.find(s=>s.id===activeStudent)||STUDENTS[0];const btn=document.getElementById('studentBtn');document.getElementById('studentLabel').textContent=student.label;btn.classList.toggle('has-value',activeStudent!=='all');document.getElementById('studentMenu').innerHTML=STUDENTS.map(s=>`<button type="button" class="student-option ${activeStudent===s.id?'active':''}" data-s="${s.id}"><span class="dot"></span>${s.label}</button>`).join('');document.querySelectorAll('.student-option').forEach(opt=>{opt.onclick=()=>{activeStudent=opt.dataset.s;closeStudentMenu();render()}})}
-function openStudentMenu(){document.getElementById('studentMenu').classList.add('open');document.getElementById('studentBtn').classList.add('open')}
-function closeStudentMenu(){document.getElementById('studentMenu').classList.remove('open');document.getElementById('studentBtn').classList.remove('open')}
-document.getElementById('studentBtn').addEventListener('click',e=>{e.stopPropagation();const m=document.getElementById('studentMenu');m.classList.contains('open')?closeStudentMenu():openStudentMenu()});
-document.addEventListener('click',e=>{if(!document.getElementById('studentFilter').contains(e.target))closeStudentMenu()});
+function matchItem(item){const cats=item.cat||[];if(activeFilter!=='all'&&!cats.includes(activeFilter))return false;if(!query)return true;const hay=[item.title,item.desc,...(item.tags||[]),item.path||''].join(' ').toLowerCase();return query.split(/\s+/).every(w=>hay.includes(w))}
+function renderFilters(){document.getElementById('filters').innerHTML=FILTERS.map(f=>`<button type="button" class="chip ${activeFilter===f.id?'active':''}" data-f="${f.id}">${f.label}</button>`).join('');document.querySelectorAll('.chip').forEach(btn=>{btn.onclick=()=>{activeFilter=btn.dataset.f;render()}})}
 function cardHTML(item){const badge=item.badge||{t:'Материал',c:''};const actions=[];if(item.url)actions.push(`<a class="btn" href="${item.url}" target="_blank" rel="noopener">Открыть ↗</a>`);if(item.path&&!item.url)actions.push(`<span class="btn ghost">Локальный файл</span>`);return `<article class="card"><div><span class="badge ${badge.c||''}">${badge.t}</span></div><h3>${item.title}</h3><p>${item.desc||''}</p><div class="tags">${(item.tags||[]).map(t=>`<span class="tag">${t}</span>`).join('')}</div>${item.path?`<div class="path">${item.path}</div>`:''}<div class="card-actions">${actions.join('')}</div></article>`}
 function render(){if(typeof SECTIONS==='undefined')return;renderFilters();let total=0,online=0,cards=0,shown=0;const topics=new Set();const html=SECTIONS.map(sec=>{const items=sec.items.filter(matchItem);sec.items.forEach(it=>{total++;if(it.url)online++;if((it.cat||[]).includes('students'))cards++;(it.cat||[]).forEach(c=>topics.add(c))});if(!items.length)return'';shown+=items.length;return `<section class="section"><div class="section-head"><h2><span class="dot" style="background:${sec.color}"></span>${sec.title}</h2><span class="count">${items.length}</span></div><div class="grid">${items.map(cardHTML).join('')}</div></section>`}).join('');document.getElementById('content').innerHTML=html;document.getElementById('empty').classList.toggle('show',shown===0);document.getElementById('statAll').textContent=total;document.getElementById('statOnline').textContent=online;document.getElementById('statCards').textContent=cards;document.getElementById('statTopics').textContent=topics.size}
 const q=document.getElementById('q');q.addEventListener('input',()=>{query=q.value.trim().toLowerCase();render()});
